@@ -131,7 +131,7 @@ public class colgadoP3 {
 			System.out.println("¡Gracias por jugar! El juego ha terminado.");
 			break;
 		}
-	
+		//para el caso de 3 jugadores (NOTA: como el caso es el mismo pero adaptado a 3 jugadores no comentaré todo lo visto anteriormente)
 		while (jugadores == 3) {
 
 			System.out.println("Introduzca el nombre del jugador 1 (administrador):");
@@ -141,7 +141,71 @@ public class colgadoP3 {
 			System.out.println("Introduzca el nombre del jugador 3:");
 			String nombre3 = nomb_jug.nextLine();
 
-			
+			System.out.println(" ");
+			System.out.println(nombre1 + " será el administrador");
+			System.out.println(nombre2 + " " + "y" + " " + nombre3 + " adivinarán la palabra");
+
+			System.out.println("¿Cuantas rondas desean jugar?");
+			rondas = eleccion.nextInt();
+			System.out.println(" ");
+			System.out.println("De acuerdo, el número de rondas serán " + rondas);
+			//definimos nuestra variable de tipo INT la cual más adelante nos podra mostrar quién ha ganado mas rondas
+			int rondasGanadasJugador2 = 0;
+			int rondasGanadasJugador3 = 0;
+
+			for (int ronda = 1; ronda <= rondas; ronda++) {
+				System.out.println("Ronda " + ronda);
+
+				Scanner palabra = new Scanner(System.in);
+				System.out.println(nombre1 + " elija una palabra: ");
+				String palabraS = palabra.nextLine();
+
+				String palabraSecreta = palabraS;
+				int intentosMaximos = 6;
+				int palabraAdivinada = 0;
+
+				char[] letrasAdivinadas = new char[palabraSecreta.length()];
+				for (int i = 0; i < letrasAdivinadas.length; i++) {
+					letrasAdivinadas[i] = '_';
+				}
+				
+				int intentosJugador2 = 0;
+				int intentosJugador3 = 0;
+
+				while (palabraAdivinada == 0
+						&& (intentosJugador2 < intentosMaximos || intentosJugador3 < intentosMaximos)) {
+
+					System.out.println("Palabra a adivinar: " + String.valueOf(letrasAdivinadas) + " ("
+							+ palabraSecreta.length() + " letras)");
+					//para el turno del jugador 2 
+					if (intentosJugador2 < intentosMaximos) {
+						System.out.println("Es el turno de " + nombre2 + " para adivinar.");
+						Scanner letras = new Scanner(System.in);
+						System.out.println("Introduce una letra, por favor:");
+						char letra2 = Character.toLowerCase(letras.next().charAt(0));
+
+						int letraCorrecta2 = 0;
+						for (int i = 0; i < palabraSecreta.length(); i++) {
+							if (palabraSecreta.charAt(i) == letra2) {
+								letrasAdivinadas[i] = letra2;
+								letraCorrecta2 = 1;
+							}
+						}
+
+						if (letraCorrecta2 == 0) {
+							intentosJugador2++;
+							System.out.println(
+									"¡Incorrecto! Te quedan " + (intentosMaximos - intentosJugador2) + " intentos.");
+						}
+
+						if (String.valueOf(letrasAdivinadas).equals(palabraSecreta)) {
+							palabraAdivinada = 1;
+							System.out.println("¡Felicidades " + nombre2 + "! Has adivinado la palabra secreta: "
+									+ palabraSecreta);
+							rondasGanadasJugador2++; //en este caso le subimos un contador a las rondas ganadas
+						}
+
+					}
 			break;
 		}
 		
