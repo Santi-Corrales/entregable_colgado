@@ -204,8 +204,54 @@ public class colgadoP3 {
 									+ palabraSecreta);
 							rondasGanadasJugador2++; //en este caso le subimos un contador a las rondas ganadas
 						}
-
 					}
+					//para el turno del jugador 3
+					if (intentosJugador3 < intentosMaximos && palabraAdivinada == 0) {
+						System.out.println("Es el turno de " + nombre3 + " para adivinar.");
+						Scanner letras = new Scanner(System.in);
+						System.out.println("Introduce una letra, por favor:");
+						char letra3 = Character.toLowerCase(letras.next().charAt(0));
+
+						int letraCorrecta3 = 0;
+						for (int i = 0; i < palabraSecreta.length(); i++) {
+							if (palabraSecreta.charAt(i) == letra3) {
+								letrasAdivinadas[i] = letra3;
+								letraCorrecta3 = 1;
+							}
+						}
+
+						if (letraCorrecta3 == 0) {
+							intentosJugador3++;
+							System.out.println(
+									"¡Incorrecto! Te quedan " + (intentosMaximos - intentosJugador3) + " intentos.");
+						}
+
+						if (String.valueOf(letrasAdivinadas).equals(palabraSecreta)) {
+							palabraAdivinada = 1;
+							System.out.println("¡Felicidades " + nombre3 + "! Has adivinado la palabra secreta: "
+									+ palabraSecreta);
+							rondasGanadasJugador3++; //en este caso le subimos un contador a las rondas ganadas
+						}
+					}
+				}
+
+				if (palabraAdivinada == 0) {
+					System.out.println(
+							"¡Ninguno de los jugadores ha adivinado la palabra! La palabra era: " + palabraSecreta);
+				}
+			}
+			//hacemos un condicional de comparación para printar nuestro resultado final
+			System.out.println(" ");
+			System.out.println("Conteo de rondas y ganador del juego");
+			if (rondasGanadasJugador2 > rondasGanadasJugador3) {
+				System.out.println(nombre2 + " ha ganado más rondas (" + rondasGanadasJugador2 + " rondas).");
+			} else if (rondasGanadasJugador3 > rondasGanadasJugador2) {
+				System.out.println(nombre3 + " ha ganado más rondas (" + rondasGanadasJugador3 + " rondas).");
+			} else {
+				System.out.println("Ambos jugadores han ganado el mismo número de rondas.");
+			}
+
+			System.out.println("¡Gracias por jugar!");	
 			break;
 		}
 		
