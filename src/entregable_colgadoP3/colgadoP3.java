@@ -265,7 +265,146 @@ public class colgadoP3 {
 			System.out.println("Introduzca el nombre del jugador 4:");
 			String nombre4 = nomb_jug.nextLine();
 
-			
+			System.out.println(" ");
+			System.out.println(nombre1 + " será el administrador");
+			System.out.println(nombre2 + "," + nombre3 + " "  + "y" + " " + nombre4 + " adivinarán la palabra");
+
+			System.out.println("¿Cuantas rondas desean jugar?");
+			rondas = eleccion.nextInt();
+			System.out.println(" ");
+			System.out.println("De acuerdo, el número de rondas serán " + rondas);
+
+			int rondasGanadasJugador2 = 0;
+			int rondasGanadasJugador3 = 0;
+			int rondasGanadasJugador4 = 0;
+
+			for (int ronda = 1; ronda <= rondas; ronda++) {
+				System.out.println("Ronda " + ronda);
+
+				Scanner palabra = new Scanner(System.in);
+				System.out.println(nombre1 + " elija una palabra: ");
+				String palabraS = palabra.nextLine();
+
+				String palabraSecreta = palabraS;
+				int intentosMaximos = 6;
+				int palabraAdivinada = 0;
+
+				char[] letrasAdivinadas = new char[palabraSecreta.length()];
+				for (int i = 0; i < letrasAdivinadas.length; i++) {
+					letrasAdivinadas[i] = '_';
+				}
+
+				int intentosJugador2 = 0;
+				int intentosJugador3 = 0;
+				int intentosJugador4 = 0;
+
+				while (palabraAdivinada == 0 && (intentosJugador2 < intentosMaximos
+						|| intentosJugador3 < intentosMaximos || intentosJugador4 < intentosMaximos)) {
+
+					System.out.println("Palabra a adivinar: " + String.valueOf(letrasAdivinadas) + " ("
+							+ palabraSecreta.length() + " letras)");
+					//para el turno del jugador 2
+					if (intentosJugador2 < intentosMaximos) {
+						System.out.println("Es el turno de " + nombre2 + " para adivinar.");
+						Scanner letras = new Scanner(System.in);
+						System.out.println("Introduce una letra, por favor:");
+						char letra2 = Character.toLowerCase(letras.next().charAt(0));
+
+						int letraCorrecta2 = 0;
+						for (int i = 0; i < palabraSecreta.length(); i++) {
+							if (palabraSecreta.charAt(i) == letra2) {
+								letrasAdivinadas[i] = letra2;
+								letraCorrecta2 = 1;
+							}
+						}
+
+						if (letraCorrecta2 == 0) {
+							intentosJugador2++;
+							System.out.println(
+									"¡Incorrecto! Te quedan " + (intentosMaximos - intentosJugador2) + " intentos.");
+						}
+
+						if (String.valueOf(letrasAdivinadas).equals(palabraSecreta)) {
+							palabraAdivinada = 1;
+							System.out.println("¡Felicidades " + nombre2 + "! Has adivinado la palabra secreta: "
+									+ palabraSecreta);
+							rondasGanadasJugador2++;
+						}
+					}
+					//para el turno del jugador 3
+					if (intentosJugador3 < intentosMaximos && palabraAdivinada == 0) {
+						System.out.println("Es el turno de " + nombre3 + " para adivinar.");
+						Scanner letras = new Scanner(System.in);
+						System.out.println("Introduce una letra, por favor:");
+						char letra3 = Character.toLowerCase(letras.next().charAt(0));
+
+						int letraCorrecta3 = 0;
+						for (int i = 0; i < palabraSecreta.length(); i++) {
+							if (palabraSecreta.charAt(i) == letra3) {
+								letrasAdivinadas[i] = letra3;
+								letraCorrecta3 = 1;
+							}
+						}
+
+						if (letraCorrecta3 == 0) {
+							intentosJugador3++;
+							System.out.println(
+									"¡Incorrecto! Te quedan " + (intentosMaximos - intentosJugador3) + " intentos.");
+						}
+
+						if (String.valueOf(letrasAdivinadas).equals(palabraSecreta)) {
+							palabraAdivinada = 1;
+							System.out.println("¡Felicidades " + nombre3 + "! Has adivinado la palabra secreta: "
+									+ palabraSecreta);
+							rondasGanadasJugador3++;
+						}
+					}
+					//para el turno del jugador 4 
+					if (intentosJugador4 < intentosMaximos && palabraAdivinada == 0) {
+						System.out.println("Es el turno de " + nombre4 + " para adivinar.");
+						Scanner letras = new Scanner(System.in);
+						System.out.println("Introduce una letra, por favor:");
+						char letra4 = Character.toLowerCase(letras.next().charAt(0));
+
+						int letraCorrecta4 = 0;
+						for (int i = 0; i < palabraSecreta.length(); i++) {
+							if (palabraSecreta.charAt(i) == letra4) {
+								letrasAdivinadas[i] = letra4;
+								letraCorrecta4 = 1;
+							}
+						}
+						if (letraCorrecta4 == 0) {
+							intentosJugador4++;
+							System.out.println(
+									"¡Incorrecto! Te quedan " + (intentosMaximos - intentosJugador4) + " intentos.");
+						}
+						if (String.valueOf(letrasAdivinadas).equals(palabraSecreta)) {
+							palabraAdivinada = 1;
+							System.out.println("¡Felicidades " + nombre4 + "! Has adivinado la palabra secreta: "
+									+ palabraSecreta);
+							rondasGanadasJugador4++;
+						}
+					}
+				}
+				if (palabraAdivinada == 0) {
+					System.out.println(
+							"¡Ningún jugador ha adivinado la palabra! La palabra era: " + palabraSecreta);
+				}
+			}
+
+			System.out.println(" ");
+			System.out.println("Conteo de rondas y ganador del juego");
+			if (rondasGanadasJugador2 > rondasGanadasJugador3 && rondasGanadasJugador2 > rondasGanadasJugador4) {
+				System.out.println(nombre2 + " ha ganado más rondas (" + rondasGanadasJugador2 + " rondas).");
+			} else if (rondasGanadasJugador3 > rondasGanadasJugador2 && rondasGanadasJugador3 > rondasGanadasJugador4) {
+				System.out.println(nombre3 + " ha ganado más rondas (" + rondasGanadasJugador3 + " rondas).");
+			} else if (rondasGanadasJugador4 > rondasGanadasJugador2 && rondasGanadasJugador4 > rondasGanadasJugador3) {
+				System.out.println(nombre4 + " ha ganado más rondas (" + rondasGanadasJugador4 + " rondas).");
+			} else {
+				System.out.println("Ha habido un empate en el número de rondas ganadas.");
+			}
+
+			System.out.println("¡Gracias por jugar!");
 			break;
 		}
 	
