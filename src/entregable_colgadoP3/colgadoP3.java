@@ -51,7 +51,50 @@ public class colgadoP3 {
 			System.out.println("Opción no válida. Debe elegir entre 2, 3 o 4 jugadores.");
 		}
 		
+		int rondas;
+		Scanner eleccion = new Scanner(System.in);
+		Scanner nomb_jug = new Scanner(System.in);
 		
+		//para el caso de 2 jugadores 
+		while (jugadores == 2) {
+			//preguntamos los nombres de los jugadores
+			System.out.println("Introduzca el nombre del jugador 1 (administrador):");
+			String nombre1 = nomb_jug.nextLine();
+			System.out.println("Introduzca el nombre del jugador 2:");
+			String nombre2 = nomb_jug.nextLine();
+			System.out.println(" ");
+			System.out.println(nombre1 + " será el administrador");
+			System.out.println(nombre2 + " adivinará la palabra");
+		
+			break;
+		}
+	
+		while (jugadores == 3) {
+
+			System.out.println("Introduzca el nombre del jugador 1 (administrador):");
+			String nombre1 = nomb_jug.nextLine();
+			System.out.println("Introduzca el nombre del jugador 2:");
+			String nombre2 = nomb_jug.nextLine();
+			System.out.println("Introduzca el nombre del jugador 3:");
+			String nombre3 = nomb_jug.nextLine();
+
+			
+			break;
+		}
+		
+		while (jugadores == 4) {
+			System.out.println("Introduzca el nombre del jugador 1:");
+			String nombre1 = nomb_jug.nextLine();
+			System.out.println("Introduzca el nombre del jugador 2:");
+			String nombre2 = nomb_jug.nextLine();
+			System.out.println("Introduzca el nombre del jugador 3:");
+			String nombre3 = nomb_jug.nextLine();
+			System.out.println("Introduzca el nombre del jugador 4:");
+			String nombre4 = nomb_jug.nextLine();
+
+			
+			break;
+		}
 	
 	}
 
