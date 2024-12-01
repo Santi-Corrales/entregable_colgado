@@ -65,7 +65,34 @@ public class colgadoP3 {
 			System.out.println(" ");
 			System.out.println(nombre1 + " será el administrador");
 			System.out.println(nombre2 + " adivinará la palabra");
-		
+			
+			//preguntamos las rondas
+			System.out.println(" ");
+			System.out.println("¿Cuántas rondas desean jugar?");
+			rondas = eleccion.nextInt();
+			System.out.println(" ");
+			System.out.println("De acuerdo, el número de rondas serán " + rondas);
+			//bucle principal que proporciona las rondas elegidas 
+		for (int ronda = 1; ronda <= rondas; ronda++) {
+				System.out.println("Ronda " + ronda);
+
+				Scanner palabra = new Scanner(System.in);
+				System.out.println(nombre1 + " elija una palabra: ");
+				String palabraS = palabra.nextLine();
+
+				Scanner letras = new Scanner(System.in);
+
+				//definimos nuestras variables
+				String palabraSecreta = palabraS;
+				int intentosMaximos = 6;
+				int intentos = 0;
+				int palabraAdivinada = 0;
+				
+				//iniciamos nuestro primer Array para las letras adivinadas, seguidamente el FOR representará con guión bajo las letras no adivinadas
+				char[] letrasAdivinadas = new char[palabraSecreta.length()];
+				for (int i = 0; i < letrasAdivinadas.length; i++) {
+					letrasAdivinadas[i] = '_';
+				}
 			break;
 		}
 	
@@ -83,7 +110,7 @@ public class colgadoP3 {
 		}
 		
 		while (jugadores == 4) {
-			System.out.println("Introduzca el nombre del jugador 1:");
+			System.out.println("Introduzca el nombre del jugador 1(administrador):");
 			String nombre1 = nomb_jug.nextLine();
 			System.out.println("Introduzca el nombre del jugador 2:");
 			String nombre2 = nomb_jug.nextLine();
